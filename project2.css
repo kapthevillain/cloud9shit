@@ -1,0 +1,88 @@
+body {
+	background-color: darkgrey;
+}
+
+#header-container {
+	background-color: #d6d6d6;
+	padding-bottom: 20px;
+	box-shadow: 0px 1px 2px black;
+}
+
+#shirtInfo-container {
+	background-color: #ffcc99;
+	margin-bottom: 20px;
+	padding-bottom: 20px;
+	padding-left: 17px; /*original 17px*/
+	box-shadow: 0px 1px 2px black;
+}
+
+#payShip-container {
+	background-color: #ffcc99;
+	margin-bottom: 20px;
+	padding-bottom: 20px;
+	padding-left: 20px;
+	box-shadow: 0px 1px 2px black;
+}
+
+#shipInfo	, #paymentInfo, #colorPicker, #sizePicker, #qty {
+	padding-top: 25px;
+}
+
+#ccn {
+	padding: 55px 0px 15px 0px;
+}
+
+#cvv {
+  letter-spacing: 2px;
+}
+
+#ccIcons {
+  font-size: 35px;
+}
+
+
+.error {
+	color: red;
+	font-size: 1em;
+}
+
+#summary {
+	text-align: center;
+	font-size: 1em;
+	color: white;
+	background-color: red;
+}
+
+@media (min-width: 767px) {
+	#paymentInfo {
+		border-right: 3px solid #666666;
+	}
+	#sizePicker {
+		border-left: 3px solid #666666;
+		border-right: 3px solid #666666;
+	}
+ }
+
+@media (min-width: 768px) {
+		#paymentInfo {
+		border-right: 3px solid #666666;
+	}
+	#sizePicker {
+		border-left: 3px solid #666666;
+	}
+	#summary {
+		font-size: 1.5em;
+	}
+ }
+
+@media (min-width: 1200px) {
+	#paymentInfo {
+		border-right: 3px solid #666666;
+	}
+	#sizePicker {
+		border-left: 3px solid #666666;
+	}
+	#summary {
+		font-size: 1.5em;
+	}
+}

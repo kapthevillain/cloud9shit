@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Shirt Order Form</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="project2.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+
+</head>
+
+<body>
+    <div>
+        <div id="header-container" class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <header>
+                        <h1 id="mainHeader" class="text-center">Shirt Order Form</h1>
+                    </header>
+                </div>
+            </div>
+        </div>
+
+        <br>
+
+        <div>
+
+
+            <form action="" method="post" id="shirtForm">
+
+                <div id="shirtInfo-container" class="container">
+                    <div class="row">
+                        <h2 style="padding-left: 8px">Shirt Info</h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <div id="colorPicker" class="col-xs-12 col-sm-4">
+                                <label><strong>Choose a Color</strong></label>
+                                <br>
+                                <div class="form-group">
+                                  <select name="color" class="form-control">
+                                      <option value=""> Choose Color...</option>
+                                      <option value="red">Red</option>
+                                      <option value="green">Green</option>
+                                      <option value="blue">Blue</option>
+                                  </select>
+                                </div>
+                            </div>
+
+                            <div id="sizePicker" class="col-xs-12 col-sm-4 form-group text-center">
+                                <label><strong>Select a Size</strong></label>
+                                <br>
+                                <div class="form-group">
+                                  <fieldset id="size" id="sizeRadio">
+                                      <label for="">
+                                          <input type="radio" name="size" value="small" class="radio-inline"> Small</label>
+                                      <br />
+                                      <label for="">
+                                          <input type="radio" name="size" value="medium" class="radio-inline"> Med.</label>
+                                      <br />
+                                      <label for="" id="lastSize">
+                                          <input type="radio" name="size" value="large" class="radio-inline"> Large</label>
+                                  </fieldset>
+                                </div>
+                            </div>
+                            <div id="qty" class="col-xs-12 col-sm-4">
+                                <label>Quantity of Shirts (1-10):</label>
+                                <br>
+                                <div class="form-group">
+                                    <select id="numShirts" class="form-control" name="numShirts" onclick="calculate()">
+                                        <option value="">How Many?</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                    </select>
+                                    <small class="text-muted">Limit 10 Shirts</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="text-align: right">
+                      <h3>Total: <input type="text" id="total" value="" disabled/></h3>
+                    </div>
+                </div>
+
+                <div id="payShip-container" class="container">
+                    <div>
+                        <div class="row">
+                            <h2>Payment and Shipping</h2>
+                        </div>
+                        <div class="row">
+                            <div id="paymentInfo" class="col-xs-12 col-sm-6">
+                                <fieldset>
+                                    <legend><strong>Billing Address</strong></legend>
+
+                                    <div class="form-group">
+                                        <label>First Name:</label>
+                                        <input type="text" class="form-control" name="firstNamePay">
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label>Last Name:</label>
+                                        <input type="text" class="form-control" name="lastNamePay">
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label>Email Address:</label>
+                                        <input type="email" class="form-control" name="email"></input>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label>Address:</label>
+                                        <br>
+                                        <input type="text" class="form-control" name="addressPay">
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                      <div class="col-xs-6 col-sm-6 form-group">
+                                          <label> City:</label>
+                                          <br>
+                                          <input type="text" class="form-control" name="cityPay">
+                                      </div>
+                                      <div class="col-xs-3 col-sm-3 form-group">
+                                          <label> State:</label>
+                                          <br>
+                                          <input type="text" class="form-control" name="statePay" placeholder="AL, AK, AZ, AR, CA ...">
+                                          <!-- <small class="text-muted">Example: AL, AK, AZ, AR, CA ...</small> -->
+                                      </div>
+                                      <div class="col-xs-3 col-sm-3 form-group">
+                                          <label id="zip"> Zip:</label>
+                                          <br>
+                                          <input type="text" class="form-control" name="zipCodePay">
+                                      </div>
+                                    </div>
+                                    <br>
+                                    <label for="shippingInfo">
+                                        <input type="checkbox" class="checkbox-inline" id="shippingInfo" name="shippingInfo" /> Check box if Shipping Address is different than Billing Address</label>
+                                    <br>
+                                </fieldset>
+                            </div>
+
+
+                            <div id="shipInfo" class="center-block col-xs-12 col-sm-6">
+                                <fieldset id="shipInfoField">
+                                    <legend><strong>Shipping</strong></legend>
+                                    <div class="form-group">
+                                        <label>First Name:</label>
+                                        <input id="firstNameShip" type="text" class="form-control" name="firstNameShip">
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label>Last Name:</label>
+                                        <input type="text" class="form-control" name="lastNameShip">
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label>Address:</label>
+                                        <br>
+                                        <input type="text" class="form-control" name="addressShip">
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                      <div class="col-xs-6 col-sm-6 form-group">
+                                          <label> City:</label>
+                                          <br>
+                                          <input type="text" class="form-control" name="cityShip">
+                                      </div>
+                                      <div class="col-xs-3 col-sm-3 form-group">
+                                          <label> State:</label>
+                                          <br>
+                                          <input type="text" class="form-control" name="stateShip" placeholder="AL, AK, AZ, AR, CA ...">
+                                          <!-- <small class="text-muted">Example: AL, AK, AZ, AR, CA ...</small> -->
+                                      </div>
+                                    <div class="col-xs-3 col-sm-3 form-group">
+                                        <label> Zip:</label>
+                                        <br>
+                                        <input type="text" class="form-control" name="zipCodeShip">
+                                    </div>
+                                  </div>
+                                </fieldset>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div id="ccn">
+                        <div class="row">
+                            <fieldset id="ccnField">
+                                <legend><strong>Credit Card Information</strong></legend>
+                                <div class="col-xs-12 col-sm-6 form-group">
+                                    <label>Credit Card Number</label>
+                                    <input type="text" class="form-control" name="creditCardNum">
+                                </div>
+                                <div id="expiration" class="row">
+                                    <div class="col-xs-12 col-sm-6 text-center">
+                                        <label>Expiration Date</label>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-3 form-group">
+																			<div style="padding-left: 15px">
+                                        <select class="form-control" name="expMonth">
+                                            <option value="">Month</option>
+                                            <option value="01">Jan 01</option>
+                                            <option value="02">Feb 02</option>
+                                            <option value="03">Mar 03</option>
+                                            <option value="04">Apr 04</option>
+                                            <option value="05">May 05</option>
+                                            <option value="06">Jun 06</option>
+                                            <option value="07">Jul 07</option>
+                                            <option value="08">Aug 08</option>
+                                            <option value="09">Sep 09</option>
+                                            <option value="10">Oct 10</option>
+                                            <option value="11">Nov 11</option>
+                                            <option value="12">Dec 12</option>
+                                        </select>
+																			</div>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-3 form-group">
+																			<div style="padding-right: 15px">
+                                        <select class="form-control" name="expYear">
+                                            <option value="">Year</option>
+                                            <option value="2016">2016</option>
+                                            <option value="2017">2017</option>
+                                            <option value="2018">2018</option>
+                                            <option value="2019">2019</option>
+                                            <option value="2020">2020</option>
+                                            <option value="2021">2021</option>
+                                            <option value="2022">2022</option>
+                                            <option value="2023">2023</option>
+                                            <option value="2024">2024</option>
+                                            <option value="2025">2025</option>
+                                            <option value="2026">2026</option>
+                                            <option value="2027">2027</option>
+                                            <option value="2028">2028</option>
+                                        </select>
+																			</div>
+                                    </div>
+                                </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-4">
+                                <label>Card Type</label>
+                                <div class="form-group">
+                                    <select class="form-control" name="cardType">
+                                        <option value="">Card Type</option>
+                                        <option value="amex">American Express</option>
+                                        <option value="masterCard">Mastercard</option>
+                                        <option value="visa">Visa</option>
+                                    </select>
+                                </div>
+                                <i id="ccIcons" class="fa fa-cc-amex" aria-hidden="true"></i>
+                                <i id="ccIcons" class="fa fa-cc-mastercard"></i>
+                                <i id="ccIcons" class="fa fa-cc-visa"></i>
+
+                            </div>
+                            <div class="col-xs-6 col-sm-2 form-group">
+                                <label><span id="cvv">CVV</span> Number </label>
+                                <input type="text" class="form-control" name="CVV" placeholder="3-Digit Number"></input>
+                                <!--<small class="text-muted">3-Digit Number</small>-->
+                            </div>
+                        </div>
+                        </fieldset>
+
+                    </div>
+                    <div class="row">
+                      <div id="summary"></div>
+                      <div id="messageBox">
+                        <ul>
+
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-center">
+                            <br>
+                            <button type="submit" class="btn btn-primary">Submit Order</button>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
